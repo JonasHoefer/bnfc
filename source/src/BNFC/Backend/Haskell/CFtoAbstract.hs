@@ -307,7 +307,7 @@ deriving_ cls = "deriving" <+> parens (hsep $ punctuate "," $ map text cls)
 instanceHasPositionTokenType :: TokenCat -> Doc
 instanceHasPositionTokenType cat = vcat
   [ "instance" <+> hasPositionClass <+> t <+> "where"
-  , nest 2 $ "hasPosition " <> parens (t <+> "(p, _)") <+> "= C.Just p"
+  , nest 2 $ "hasPosition " <> parens (t <+> "(p, i)") <+> "= C.Just (p, fmap (+ length i) p)"
   ]
   where
   t = text cat

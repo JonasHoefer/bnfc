@@ -272,7 +272,7 @@ instanceHasPositionData (cat, rules) = vcat . concat $
 --   deriving (Show)
 --
 -- >>> prSpecialData ByteStringToken True ["Show"] catIdent
--- newtype Ident = Ident ((C.Int, C.Int), BS.ByteString)
+-- newtype Ident = Ident (((C.Int, C.Int), (C.Int, C.Int)), BS.ByteString)
 --   deriving (Show)
 --
 prSpecialData
@@ -286,7 +286,7 @@ prSpecialData tokenText position classes cat = vcat
     , nest 2 $ deriving_ classes
     ]
   where
-    contentSpec | position    = parens ( "(C.Int, C.Int), " <> stringType)
+    contentSpec | position    = parens ( "((C.Int, C.Int), (C.Int, C.Int)), " <> stringType)
                 | otherwise   = stringType
     stringType = text $ tokenTextType tokenText
 
@@ -307,7 +307,7 @@ deriving_ cls = "deriving" <+> parens (hsep $ punctuate "," $ map text cls)
 instanceHasPositionTokenType :: TokenCat -> Doc
 instanceHasPositionTokenType cat = vcat
   [ "instance" <+> hasPositionClass <+> t <+> "where"
-  , nest 2 $ "hasPosition " <> parens (t <+> "(p, i)") <+> "= C.Just (p, fmap (+ length i) p)"
+  , nest 2 $ "hasPosition " <> parens (t <+> "(p, _)") <+> "= C.Just p"
   ]
   where
   t = text cat

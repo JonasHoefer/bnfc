@@ -216,7 +216,7 @@ restOfAlex tokenText cf = concat
     , "posLineCol (Pn _ l c) = (l,c)"
     , ""
     , "-- | Convert a token into \"position token\" form."
-    , "mkPosToken :: Token -> (((Int, Int), Int), " ++ stringType ++ ")"
+    , "mkPosToken :: Token -> (((Int, Int), (Int, Int)), " ++ stringType ++ ")"
     , "mkPosToken t = (tokenSpan t, tokenText t)"
     , ""
     , "-- | Convert a token to its text."

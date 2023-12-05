@@ -217,7 +217,7 @@ restOfAlex tokenText cf = concat
     , ""
     , "-- | Convert a token into \"position token\" form."
     , "mkPosToken :: Token -> (((Int, Int), Int), " ++ stringType ++ ")"
-    , "mkPosToken t = ((tokenLineCol t, tokenLen t), tokenText t)"
+    , "mkPosToken t = (tokenSpan t, tokenText t)"
     , ""
     , "-- | Convert a token to its text."
     , "tokenText :: Token -> " ++ stringType

@@ -155,7 +155,7 @@ prologue tokenText useGadt name absMod cf = map text $ concat
     , "  closingOrPunctuation _   = False"
     , ""
     , "  closerOrPunct :: String"
-    , "  closerOrPunct = \")],;\""
+    , "  closerOrPunct = \")].,;\""
     , ""
     , "parenth :: Doc -> Doc"
     , "parenth ss = doc (showChar '(') . ss . doc (showChar ')')"
